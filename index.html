@@ -1,0 +1,124 @@
+HTML (index.html)
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Goal Setter</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Goal Setter</h1>
+    </header>
+    <main>
+        <section id="goal-section">
+            <h2>Set Your Goal</h2>
+            <form id="goal-form">
+                <label for="goal-input">Goal:</label>
+                <input type="text" id="goal-input" name="goal">
+                <button id="submit-goal">Submit</button>
+            </form>
+            <ul id="goal-list"></ul>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
+```
+
+CSS (styles.css)
+```
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1em;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2em;
+}
+
+#goal-section {
+    background-color: #f7f7f7;
+    padding: 1em;
+    border: 1px solid #ddd;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#goal-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#goal-input {
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 0.25em;
+}
+
+#submit-goal {
+    background-color: #333;
+    color: #fff;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 0.25em;
+    cursor: pointer;
+}
+
+#goal-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#goal-list li {
+    padding: 0.5em;
+    border-bottom: 1px solid #ccc;
+}
+
+#goal-list li:last-child {
+    border-bottom: none;
+}
+```
+
+JavaScript (script.js)
+```
+const goalForm = document.getElementById('goal-form');
+const goalInput = document.getElementById('goal-input');
+const submitGoal = document.getElementById('submit-goal');
+const goalList = document.getElementById('goal-list');
+
+let goals = [];
+
+goalForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const goal = goalInput.value.trim();
+    if (goal) {
+        goals.push(goal);
+        goalInput.value = '';
+        renderGoalList();
+    }
+});
+
+function renderGoalList() {
+    goalList.innerHTML = '';
+    goals.forEach((goal, index) => {
+        const li = document.createElement('li');
+        li.textContent = goal;
+        goalList.appendChild(li);
+    });
+}
+```
